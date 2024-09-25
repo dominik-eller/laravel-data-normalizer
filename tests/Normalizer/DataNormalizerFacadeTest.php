@@ -1,7 +1,6 @@
 <?php
 
 use Deller\DataNormalizer\Facades\DataNormalizer;
-use Deller\DataNormalizer\Factories\DataNormalizerFactory;
 use Deller\DataNormalizer\Normalizers\Email;  // Assuming this class exists
 use Deller\DataNormalizer\Normalizers\Phone;  // Assuming this class exists
 
