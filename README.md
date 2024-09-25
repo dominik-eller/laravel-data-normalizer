@@ -1,68 +1,114 @@
-# :package_description
+# A Laravel package to normalize and format data such as phone numbers, emails, and other input into standardized formats.
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/:vendor_slug/:package_slug/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/dominik-eller/laravel-data-normalizer.svg?style=flat-square)](https://packagist.org/packages/dominik-eller/laravel-data-normalizer)
+[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/dominik-eller/laravel-data-normalizer/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/dominik-eller/laravel-data-normalizer/actions?query=workflow%3Arun-tests+branch%3Amain)
+[![GitHub Code Style Action Status](https://img.shields.io/github/actions/workflow/status/dominik-eller/laravel-data-normalizer/fix-php-code-style-issues.yml?branch=main&label=code%20style&style=flat-square)](https://github.com/dominik-eller/laravel-data-normalizer/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
+[![Total Downloads](https://img.shields.io/packagist/dt/dominik-eller/laravel-data-normalizer.svg?style=flat-square)](https://packagist.org/packages/dominik-eller/laravel-data-normalizer)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+A Laravel package to normalize and format data such as phone numbers, emails, and other input into standardized formats.
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
-```
-
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
-php artisan migrate
+composer require dominik-eller/laravel-data-normalizer
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --tag="laravel-data-normalizer-config"
 ```
 
 This is the contents of the published config file:
 
 ```php
 return [
+    'phone' => [
+        'default_country' => 'DE',
+        'format' => 'E164',
+    ],
+    'email' => [
+        'trim_whitespace' => true,
+        'lowercase' => true,
+    ],
 ];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag=":package_slug-views"
 ```
 
 ## Usage
 
+### Normalize a phone number
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+use Deller\DataNormalizer\Facades\PhoneNormalizer;
+
+$normalizedPhone = PhoneNormalizer::create('phone')->normalize('+49 (151) 123 45678');
+// $normalizedPhone will be "+4915112345678" (E.164 format)
+```
+
+### Format a phone number
+```php
+use Deller\DataNormalizer\Facades\PhoneFormatter;
+
+$formattedPhone = PhoneFormatter::create('phone')->format('+4915112345678', ['format' => 'INTERNATIONAL']);
+// $formattedPhone will be "+49 151 1234 5678"
+```
+
+
+### Normalize an email address
+```php
+use Deller\DataNormalizer\Facades\EmailNormalizer;
+
+$normalizedEmail = EmailNormalizer::create('email')->normalize('  JohnDoe@Example.com  ');
+// $normalizedEmail will be "johndoe@example.com"
+```
+
+### Format an email address
+```php
+use Deller\DataNormalizer\Facades\EmailFormatter;
+
+$formattedEmail = DataFormatter::create('email')->format('  JohnDoe@Example.com  ');
+// $formattedEmail will be "johndoe@example.com"
+```
+
+### Registering a custom formatter
+```php
+use Deller\DataNormalizer\Factories\DataFormatterFactory;
+
+class CustomFormatter implements \Deller\DataNormalizer\DataFormatter
+{
+    public function format($data)
+    {
+        return 'Formatted: ' . strtoupper($data);
+    }
+}
+
+// Register the custom formatter type
+DataFormatterFactory::registerType('custom', CustomFormatter::class);
+
+// Use the custom formatter via the facade
+$customFormatter = \Deller\DataNormalizer\Facades\DataFormatter::create('custom');
+echo $customFormatter->format('some data'); // Output: "Formatted: SOME DATA"
+```
+
+### Registering a custom normalizer
+```php
+use Deller\DataNormalizer\Factories\DataNormalizerFactory;
+
+class CustomNormalizer implements \Deller\DataNormalizer\DataFormatter
+{
+    public function normalize($data)
+    {
+        return 'Normalized: ' . strtolower(trim($data));
+    }
+}
+
+// Register the custom normalizer type
+DataNormalizerFactory::registerType('custom', CustomNormalizer::class);
+
+// Use the custom normalizer via the facade
+$customNormalizer = \Deller\DataNormalizer\Facades\DataNormalizer::create('custom');
+echo $customNormalizer->normalize('  SOME DATA  '); // Output: "Normalized: some data"
 ```
 
 ## Testing
@@ -81,11 +127,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security Vulnerabilities
 
-Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
+Please report security vulnerabilities by email to me@dominik-eller.de instead of using the issue tracker.
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Dominik Eller](https://github.com/dominik-eller)
 - [All Contributors](../../contributors)
 
 ## License
