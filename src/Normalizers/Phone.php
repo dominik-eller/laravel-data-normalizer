@@ -32,5 +32,4 @@ class Phone extends DataNormalizer
 
         return null;
     }
-
 }

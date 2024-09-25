@@ -16,7 +16,6 @@ use InvalidArgumentException;
  */
 class DataNormalizerFactory
 {
-
     protected static array $types = [
         'phone' => Phone::class,
         'email' => Email::class,

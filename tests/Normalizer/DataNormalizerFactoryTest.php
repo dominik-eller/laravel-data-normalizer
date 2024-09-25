@@ -2,8 +2,8 @@
 
 use Deller\DataNormalizer\DataNormalizer;
 use Deller\DataNormalizer\Factories\DataNormalizerFactory;
-use Deller\DataNormalizer\Normalizers\Phone;
 use Deller\DataNormalizer\Normalizers\Email;
+use Deller\DataNormalizer\Normalizers\Phone;
 
 it('creates a Phone normalizer', function () {
     // Test that the factory creates the Phone formatter when 'phone' is requested
@@ -22,7 +22,7 @@ it('creates an Email normalizer', function () {
 it('throws an exception for unsupported normalizer type', function () {
     // Test that an InvalidArgumentException is thrown for an unsupported formatter type
     expect(fn () => DataNormalizerFactory::create('unsupported-type'))
-        ->toThrow(InvalidArgumentException::class, "Normalizer type [unsupported-type] is not supported.");
+        ->toThrow(InvalidArgumentException::class, 'Normalizer type [unsupported-type] is not supported.');
 });
 
 it('can register and create a custom normalizer type', function () {
