@@ -2,8 +2,8 @@
 
 use Deller\DataNormalizer\Facades\DataNormalizer;
 use Deller\DataNormalizer\Factories\DataNormalizerFactory;
-use Deller\DataNormalizer\Normalizers\Phone;  // Assuming this class exists
 use Deller\DataNormalizer\Normalizers\Email;  // Assuming this class exists
+use Deller\DataNormalizer\Normalizers\Phone;  // Assuming this class exists
 
 it('can resolve the phone normalizer type from the facade', function () {
     // Mock the DataFormatterFactory to return a specific formatter based on type
@@ -11,7 +11,7 @@ it('can resolve the phone normalizer type from the facade', function () {
         ->shouldReceive('create')
         ->with('phone')
         ->once()
-        ->andReturn(new Phone())  // Assume Phone class exists
+        ->andReturn(new Phone)  // Assume Phone class exists
         ->getMock();
 
     // Bind the mocked factory in the service container
@@ -29,7 +29,7 @@ it('can resolve the email normalizer type from the facade', function () {
         ->shouldReceive('create')
         ->with('email')
         ->once()
-        ->andReturn(new Email())  // Assume Email class exists
+        ->andReturn(new Email)  // Assume Email class exists
         ->getMock();
 
     // Bind the mocked factory in the service container
@@ -47,7 +47,7 @@ it('throws exception for unsupported normalizer type', function () {
         ->shouldReceive('create')
         ->with('unsupported-type')
         ->once()
-        ->andThrow(InvalidArgumentException::class, "Normalizer type [unsupported-type] is not supported.")
+        ->andThrow(InvalidArgumentException::class, 'Normalizer type [unsupported-type] is not supported.')
         ->getMock();
 
     // Bind the mocked factory in the service container
@@ -55,5 +55,5 @@ it('throws exception for unsupported normalizer type', function () {
 
     // Test that the facade throws the correct exception
     expect(fn () => DataNormalizer::create('unsupported-type'))
-        ->toThrow(InvalidArgumentException::class, "Normalizer type [unsupported-type] is not supported.");
+        ->toThrow(InvalidArgumentException::class, 'Normalizer type [unsupported-type] is not supported.');
 });

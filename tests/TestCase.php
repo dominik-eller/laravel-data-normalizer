@@ -2,9 +2,9 @@
 
 namespace Deller\DataNormalizer\Tests;
 
+use Deller\DataNormalizer\DataNormalizerServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Deller\DataNormalizer\DataNormalizerServiceProvider;
 
 class TestCase extends Orchestra
 {

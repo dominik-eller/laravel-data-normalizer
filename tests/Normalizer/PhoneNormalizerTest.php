@@ -3,7 +3,7 @@
 use Deller\DataNormalizer\Normalizers\Phone;
 
 it('can normalize a valid phone number', function () {
-    $normalizer = new Phone();
+    $normalizer = new Phone;
 
     $normalizedNumber = $normalizer->normalize('+49 151 12345678');
 
@@ -12,7 +12,7 @@ it('can normalize a valid phone number', function () {
 });
 
 it('returns null for invalid phone number', function () {
-    $normalizer = new Phone();
+    $normalizer = new Phone;
 
     $normalizedNumber = $normalizer->normalize('invalid-phone-number');
 

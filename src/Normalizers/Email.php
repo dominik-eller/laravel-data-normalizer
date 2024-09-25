@@ -6,13 +6,10 @@ use Deller\DataNormalizer\DataNormalizer;
 
 class Email extends DataNormalizer
 {
-
     /**
      * Normalize the given email address.
      *
-     * @param string $value
-     * @param array $options Optional array to override default configuration
-     * @return string
+     * @param  array  $options  Optional array to override default configuration
      */
     public function normalize(string $value, array $options = []): string
     {
@@ -33,5 +30,4 @@ class Email extends DataNormalizer
 
         return $email;
     }
-
 }

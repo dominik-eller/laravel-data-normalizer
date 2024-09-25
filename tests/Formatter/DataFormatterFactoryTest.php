@@ -1,8 +1,8 @@
 <?php
 
 use Deller\DataNormalizer\Factories\DataFormatterFactory;
-use Deller\DataNormalizer\Formatters\Phone;
 use Deller\DataNormalizer\Formatters\Email;
+use Deller\DataNormalizer\Formatters\Phone;
 
 it('creates a Phone formatter', function () {
     // Test that the factory creates the Phone formatter when 'phone' is requested
@@ -21,7 +21,7 @@ it('creates an Email formatter', function () {
 it('throws an exception for unsupported formatter type', function () {
     // Test that an InvalidArgumentException is thrown for an unsupported formatter type
     expect(fn () => DataFormatterFactory::create('unsupported-type'))
-        ->toThrow(InvalidArgumentException::class, "Formatter type [unsupported-type] is not supported.");
+        ->toThrow(InvalidArgumentException::class, 'Formatter type [unsupported-type] is not supported.');
 });
 
 it('can register and create a custom formatter type', function () {
