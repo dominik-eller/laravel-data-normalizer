@@ -18,7 +18,7 @@ it('throws exception for invalid phone-number', function () {
     $normalizer = new Phone;
 
     expect(fn () => $normalizer->normalize('invalid-phone-number'))
-        ->toThrow(Exception::class,'Error parsing phone number: The string supplied did not seem to be a phone number');
+        ->toThrow(Exception::class, 'Error parsing phone number: The string supplied did not seem to be a phone number');
 });
 
 it('throws exception for strict phone-number validation', function () {
@@ -27,5 +27,5 @@ it('throws exception for strict phone-number validation', function () {
     $normalizer = new Phone;
 
     expect(fn () => $normalizer->normalize('+491234'))
-        ->toThrow(Exception::class,'Invalid phone number');
+        ->toThrow(Exception::class, 'Invalid phone number');
 });

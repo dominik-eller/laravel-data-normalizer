@@ -27,7 +27,7 @@ class Phone extends DataNormalizer
 
             // Validate if strict validation is enabled
             if (config('data-normalizer.phone.strict_validation', false)) {
-                if (!$phoneUtil->isValidNumber($phoneNumberObject)) {
+                if (! $phoneUtil->isValidNumber($phoneNumberObject)) {
                     throw new \Exception('Invalid phone number');
                 }
             }
@@ -35,7 +35,7 @@ class Phone extends DataNormalizer
             return $phoneUtil->format($phoneNumberObject, $formatConstant);
         } catch (NumberParseException $e) {
             // Handle parsing errors
-            throw new \Exception('Error parsing phone number: ' . $e->getMessage());
+            throw new \Exception('Error parsing phone number: '.$e->getMessage());
         }
     }
 }
