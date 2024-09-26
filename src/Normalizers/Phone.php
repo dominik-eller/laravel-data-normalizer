@@ -12,24 +12,30 @@ class Phone extends DataNormalizer
 {
     public function normalize(string $value, array $options = [])
     {
-        // Get default country and format from config, allow override via options
+        // Get default country from config, but allow overrides via the $options array
         $defaultCountry = $options['default_country'] ?? config('data-normalizer.phone.default_country', 'DE');
-        $format = $options['format'] ?? config('data-normalizer.phone.format', PhoneNumberFormat::E164);
+
+        // Get default format from config
+        $format = config('data-normalizer.phone.format', PhoneNumberFormat::E164);
 
         $formatConstant = PhoneFormatHelper::resolveFormat($format);
 
         $phoneUtil = PhoneNumberUtil::getInstance();
 
         try {
-            $numberProto = $phoneUtil->parse($value, $defaultCountry);
+            $phoneNumberObject = $phoneUtil->parse($value, $defaultCountry);
 
-            if ($phoneUtil->isValidNumber($numberProto)) {
-                return $phoneUtil->format($numberProto, $formatConstant);
+            // Validate if strict validation is enabled
+            if (config('data-normalizer.phone.strict_validation', false)) {
+                if (!$phoneUtil->isValidNumber($phoneNumberObject)) {
+                    throw new \Exception('Invalid phone number');
+                }
             }
-        } catch (NumberParseException $e) {
-            // Handle error
-        }
 
-        return null;
+            return $phoneUtil->format($phoneNumberObject, $formatConstant);
+        } catch (NumberParseException $e) {
+            // Handle parsing errors
+            throw new \Exception('Error parsing phone number: ' . $e->getMessage());
+        }
     }
 }

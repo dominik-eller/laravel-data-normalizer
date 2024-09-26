@@ -4,6 +4,8 @@ use Deller\DataNormalizer\Factories\DataFormatterFactory;
 use Deller\DataNormalizer\Formatters\Email;
 use Deller\DataNormalizer\Formatters\Phone;
 
+covers(DataFormatterFactory::class);
+
 it('creates a Phone formatter', function () {
     // Test that the factory creates the Phone formatter when 'phone' is requested
     $formatter = DataFormatterFactory::create('phone');

@@ -1,8 +1,11 @@
 <?php
 
+use Deller\DataNormalizer\DataNormalizerServiceProvider;
 use Deller\DataNormalizer\Factories\DataFormatterFactory;
 use Deller\DataNormalizer\Factories\DataNormalizerFactory;
 use Illuminate\Support\Facades\App;
+
+covers(DataNormalizerServiceProvider::class);
 
 it('registers data-normalizer in the container', function () {
 

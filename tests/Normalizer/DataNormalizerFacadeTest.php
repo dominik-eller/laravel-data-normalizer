@@ -4,6 +4,8 @@ use Deller\DataNormalizer\Facades\DataNormalizer;
 use Deller\DataNormalizer\Normalizers\Email;  // Assuming this class exists
 use Deller\DataNormalizer\Normalizers\Phone;  // Assuming this class exists
 
+covers(DataNormalizer::class);
+
 it('can resolve the phone normalizer type from the facade', function () {
     // Test that the facade resolves to the correct instance
     $resolvedFormatter = DataNormalizer::create('phone');

@@ -2,6 +2,8 @@
 
 use Deller\DataNormalizer\Normalizers\Email;
 
+covers(Email::class);
+
 it('normalizes an email by trimming whitespace and converting to lowercase', function () {
     $normalizer = new Email;
 

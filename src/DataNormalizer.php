@@ -2,6 +2,9 @@
 
 namespace Deller\DataNormalizer;
 
+/**
+ * @codeCoverageIgnore
+ */
 abstract class DataNormalizer
 {
     /**

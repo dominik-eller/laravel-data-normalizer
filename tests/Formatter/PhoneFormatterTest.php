@@ -4,6 +4,8 @@ use Deller\DataNormalizer\Formatters\Phone;
 use Illuminate\Support\Facades\Config;
 use libphonenumber\PhoneNumberFormat;
 
+covers(Phone::class);
+
 it('can format a phone number in international format', function () {
     $formatter = new Phone;
 
