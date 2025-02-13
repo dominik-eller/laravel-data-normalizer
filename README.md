@@ -40,32 +40,32 @@ return [
 
 ### Normalize a phone number
 ```php
-use Deller\DataNormalizer\Facades\PhoneNormalizer;
+use Deller\DataNormalizer\Facades\DataNormalizer;
 
-$normalizedPhone = PhoneNormalizer::create('phone')->normalize('+49 (151) 123 45678');
+$normalizedPhone = DataNormalizer::create('phone')->normalize('+49 (151) 123 45678');
 // $normalizedPhone will be "+4915112345678" (E.164 format)
 ```
 
 ### Format a phone number
 ```php
-use Deller\DataNormalizer\Facades\PhoneFormatter;
+use Deller\DataNormalizer\Facades\DataFormatter;
 
-$formattedPhone = PhoneFormatter::create('phone')->format('+4915112345678', ['format' => 'INTERNATIONAL']);
+$formattedPhone = DataFormatter::create('phone')->format('+4915112345678', ['format' => 'INTERNATIONAL']);
 // $formattedPhone will be "+49 151 1234 5678"
 ```
 
 
 ### Normalize an email address
 ```php
-use Deller\DataNormalizer\Facades\EmailNormalizer;
+use Deller\DataNormalizer\Facades\DataNormalizer;
 
-$normalizedEmail = EmailNormalizer::create('email')->normalize('  JohnDoe@Example.com  ');
+$normalizedEmail = DataNormalizer::create('email')->normalize('  JohnDoe@Example.com  ');
 // $normalizedEmail will be "johndoe@example.com"
 ```
 
 ### Format an email address
 ```php
-use Deller\DataNormalizer\Facades\EmailFormatter;
+use Deller\DataNormalizer\Facades\DataFormatter;
 
 $formattedEmail = DataFormatter::create('email')->format('  JohnDoe@Example.com  ');
 // $formattedEmail will be "johndoe@example.com"
@@ -95,7 +95,7 @@ echo $customFormatter->format('some data'); // Output: "Formatted: SOME DATA"
 ```php
 use Deller\DataNormalizer\Factories\DataNormalizerFactory;
 
-class CustomNormalizer implements \Deller\DataNormalizer\DataFormatter
+class CustomNormalizer implements \Deller\DataNormalizer\DataNormalizer
 {
     public function normalize($data)
     {
