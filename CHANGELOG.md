@@ -2,6 +2,13 @@
 
 All notable changes to `laravel-data-normalizer` will be documented in this file.
 
+## 1.1.1 - 2025-02-14
+
+Updated README.md
+
+- fixed usage
+- updated how to publish config file
+
 ## Updated Documentation - 2025-02-14
 
 Fixed the usage and how to publish config file.
