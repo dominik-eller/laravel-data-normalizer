@@ -18,7 +18,7 @@ composer require dominik-eller/laravel-data-normalizer
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag="laravel-data-normalizer-config"
+php artisan vendor:publish --tag="data-normalizer-config"
 ```
 
 This is the contents of the published config file:
