@@ -9,10 +9,6 @@ Updated README.md
 - fixed usage
 - updated how to publish config file
 
-## Updated Documentation - 2025-02-14
-
-Fixed the usage and how to publish config file.
-
 ## 1.1.0 - 2024-09-26
 
 - Updated to Pest v3
