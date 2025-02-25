@@ -2,6 +2,10 @@
 
 All notable changes to `laravel-data-normalizer` will be documented in this file.
 
+## 1.2.0 - 2025-02-25
+
+Added Laravel 12 Support
+
 ## 1.1.1 - 2025-02-14
 
 Updated README.md
