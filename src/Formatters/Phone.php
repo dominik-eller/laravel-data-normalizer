@@ -10,7 +10,7 @@ use libphonenumber\PhoneNumberUtil;
 
 class Phone extends DataFormatter
 {
-    public function format(string $value, array $options = [])
+    public function format(string $value, array $options = []): string
     {
         $phoneUtil = PhoneNumberUtil::getInstance();
 
