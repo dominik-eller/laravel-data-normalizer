@@ -77,7 +77,8 @@
                 "Deller\\DataNormalizer\\DataNormalizerServiceProvider"
             ],
             "aliases": {
-                "DataNormalizer": "Deller\\DataNormalizer\\Facades\\DataNormalizer"
+                "DataNormalizer": "Deller\\DataNormalizer\\Facades\\DataNormalizer",
+                "DataFormatter": "Deller\\DataNormalizer\\Facades\\DataFormatter"
             }
         }
     },
