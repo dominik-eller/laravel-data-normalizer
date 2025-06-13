@@ -20,3 +20,11 @@ it('registers data-formatter in the container', function () {
     $dataFormatter = App::make('data-formatter');
     expect($dataFormatter)->toBeInstanceOf(DataFormatterFactory::class);
 });
+
+it('loads the default configuration from the package', function () {
+    expect(config('data-normalizer.phone.default_country'))->toBe('DE')
+        ->and(config('data-normalizer.phone.format'))->toBe('E164')
+        ->and(config('data-normalizer.email.trim_whitespace'))->toBeTrue()
+        ->and(config('data-normalizer.email.lowercase'))->toBeTrue();
+});
+
