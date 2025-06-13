@@ -75,7 +75,7 @@ $formattedEmail = DataFormatter::create('email')->format('  JohnDoe@Example.com 
 ```php
 use Deller\DataNormalizer\Factories\DataFormatterFactory;
 
-class CustomFormatter implements \Deller\DataNormalizer\DataFormatter
+class CustomFormatter extends \Deller\DataNormalizer\DataFormatter
 {
     public function format($data)
     {
@@ -95,7 +95,7 @@ echo $customFormatter->format('some data'); // Output: "Formatted: SOME DATA"
 ```php
 use Deller\DataNormalizer\Factories\DataNormalizerFactory;
 
-class CustomNormalizer implements \Deller\DataNormalizer\DataNormalizer
+class CustomNormalizer extends \Deller\DataNormalizer\DataNormalizer
 {
     public function normalize($data)
     {

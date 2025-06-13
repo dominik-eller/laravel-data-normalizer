@@ -23,7 +23,7 @@ class DataNormalizerServiceProvider extends PackageServiceProvider
             ->hasConfigFile();
     }
 
-    public function packageRegistered()
+    public function packageRegistered(): void
     {
         $this->app->singleton('data-normalizer', function ($app) {
             return new DataNormalizerFactory;

@@ -16,7 +16,9 @@ class PhoneFormatHelper
     ];
 
     /**
-     * Convert a string format (e.g. 'E164') to its corresponding libphonenumber constant.
+     * Convert a string or integer representation of a phone number format into
+     * its corresponding {@link PhoneNumberFormat} enum case. When an enum case
+     * is provided it will be returned unchanged.
      */
     public static function resolveFormat(string|int|PhoneNumberFormat $format): PhoneNumberFormat
     {
@@ -28,6 +30,6 @@ class PhoneFormatHelper
             return self::$formatMap[$format] ?? PhoneNumberFormat::E164;
         }
 
-        return PhoneNumberFormat::tryFrom($format) ?? PhoneNumberFormat::E164;
+        return PhoneNumberFormat::from($format);
     }
 }
