@@ -6,7 +6,7 @@ use libphonenumber\PhoneNumberFormat;
 
 class PhoneFormatHelper
 {
-    protected static $formatMap = [
+    protected static array $formatMap = [
         'E164' => PhoneNumberFormat::E164,
         'INTERNATIONAL' => PhoneNumberFormat::INTERNATIONAL,
         'NATIONAL' => PhoneNumberFormat::NATIONAL,
