@@ -4,6 +4,7 @@ namespace Deller\DataNormalizer\Formatters;
 
 use Deller\DataNormalizer\DataFormatter;
 use Deller\DataNormalizer\Utils\PhoneFormatHelper;
+use Illuminate\Support\Facades\Log;
 use libphonenumber\NumberParseException;
 use libphonenumber\PhoneNumberFormat;
 use libphonenumber\PhoneNumberUtil;
@@ -27,7 +28,9 @@ class Phone extends DataFormatter
                 return $phoneUtil->format($numberProto, $formatConstant);
             }
         } catch (NumberParseException $e) {
-            // Handle error
+            Log::warning('Error formatting phone number: '.$e->getMessage(), [
+                'exception' => $e,
+            ]);
         }
 
         return $value;

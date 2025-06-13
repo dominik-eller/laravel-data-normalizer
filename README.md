@@ -53,6 +53,7 @@ use Deller\DataNormalizer\Facades\DataFormatter;
 $formattedPhone = DataFormatter::create('phone')->format('+4915112345678', ['format' => 'INTERNATIONAL']);
 // $formattedPhone will be "+49 151 1234 5678"
 ```
+If parsing fails, the formatter logs the error and returns the original value.
 
 
 ### Normalize an email address

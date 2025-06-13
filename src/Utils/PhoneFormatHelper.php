@@ -16,12 +16,16 @@ class PhoneFormatHelper
     /**
      * Convert a string format (e.g. 'E164') to its corresponding libphonenumber constant.
      */
-    public static function resolveFormat(string|int $format): int
+    public static function resolveFormat(string|int|PhoneNumberFormat $format): PhoneNumberFormat
     {
         if (is_string($format)) {
             return self::$formatMap[$format] ?? PhoneNumberFormat::E164;
-        } else {
+        }
+
+        if ($format instanceof PhoneNumberFormat) {
             return $format;
         }
+
+        return PhoneNumberFormat::from($format);
     }
 }
