@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Deller\DataNormalizer\Formatters;
 
 use Deller\DataNormalizer\DataFormatter;
