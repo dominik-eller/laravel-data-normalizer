@@ -12,7 +12,7 @@ use libphonenumber\PhoneNumberUtil;
 
 class Phone extends DataNormalizer
 {
-    public function normalize(string $value, array $options = [])
+    public function normalize(string $value, array $options = []): string
     {
         // Get default country from config, but allow overrides via the $options array
         $defaultCountry = $options['default_country'] ?? config('data-normalizer.phone.default_country', 'DE');
