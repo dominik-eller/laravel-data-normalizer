@@ -1,0 +1,13 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Parameter \#2 \$numberFormat of method libphonenumber\\PhoneNumberUtil\:\:format\(\) expects libphonenumber\\PhoneNumberFormat, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Formatters/Phone.php
+
+		-
+			message: '#^Parameter \#2 \$numberFormat of method libphonenumber\\PhoneNumberUtil\:\:format\(\) expects libphonenumber\\PhoneNumberFormat, int given\.$#'
+			identifier: argument.type
+			count: 1
+			path: src/Normalizers/Phone.php
