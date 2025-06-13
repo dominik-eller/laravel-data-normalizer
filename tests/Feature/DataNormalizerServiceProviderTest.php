@@ -27,4 +27,3 @@ it('loads the default configuration from the package', function () {
         ->and(config('data-normalizer.email.trim_whitespace'))->toBeTrue()
         ->and(config('data-normalizer.email.lowercase'))->toBeTrue();
 });
-
