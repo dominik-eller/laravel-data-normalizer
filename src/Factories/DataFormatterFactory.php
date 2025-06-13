@@ -8,11 +8,11 @@ use Deller\DataNormalizer\Formatters\Phone;
 use InvalidArgumentException;
 
 /**
- * Class QrCodeFactory
+ * Class DataFormatterFactory
  *
- * This factory class is responsible for creating different types of QR code generators.
- * It supports predefined QR code types such as URL, Text, Email, and Phone, and allows
- * registering custom QR code types dynamically.
+ * Factory responsible for creating formatter instances for common data types such
+ * as phone numbers and email addresses. Custom formatter classes can also be
+ * registered at runtime.
  */
 class DataFormatterFactory
 {

@@ -8,11 +8,11 @@ use Deller\DataNormalizer\Normalizers\Phone;
 use InvalidArgumentException;
 
 /**
- * Class QrCodeFactory
+ * Class DataNormalizerFactory
  *
- * This factory class is responsible for creating different types of QR code generators.
- * It supports predefined QR code types such as URL, Text, Email, and Phone, and allows
- * registering custom QR code types dynamically.
+ * Factory responsible for creating normalizer instances for different data
+ * representations like phone numbers and email addresses. Additional
+ * normalizer types may be registered at runtime.
  */
 class DataNormalizerFactory
 {
