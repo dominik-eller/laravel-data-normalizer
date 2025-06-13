@@ -13,6 +13,7 @@ You can install the package via composer:
 
 ```bash
 composer require dominik-eller/laravel-data-normalizer
+composer dump-autoload
 ```
 
 You can publish the config file with:
