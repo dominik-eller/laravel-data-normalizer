@@ -2,6 +2,11 @@
 
 All notable changes to `laravel-data-normalizer` will be documented in this file.
 
+## 1.3.0 - 2026-05-06
+
+Added Laravel 13 Support
+Dropped Laravel 11 Support
+
 ## 1.2.1 - 2025-06-13
 
 - Added Tests
